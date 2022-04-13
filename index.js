@@ -16,7 +16,9 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.get('/',(req,res)=>{
+  res.send("Welcome to DML-server")
+})
 app.use("/playlist", RoutePlaylist);
 
 const uri = MongoDB_API || process.env.MongoDB_API;
