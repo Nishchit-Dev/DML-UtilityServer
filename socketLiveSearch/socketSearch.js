@@ -54,5 +54,5 @@ io.on("connect", (soc) => {
 });
 
 exports.listen = ()=>{
-    io.listen(process.env.SocketPort);
+    io.listen(process.env.SocketPort || SocketPort);
 }
