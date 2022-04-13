@@ -54,5 +54,6 @@ io.on("connect", (soc) => {
 });
 
 exports.listen = ()=>{
+    console.log(process.env.SocketPort)
     io.listen(process.env.SocketPort );
 }

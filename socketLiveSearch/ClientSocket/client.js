@@ -1,10 +1,10 @@
 const { io } = require("socket.io-client");
 var port = process.env.SocketPort;
-var socket = io("http://localhost:"+port);
+var socket = io("https://dml-server.herokuapp.com/");
 
 socket.on("connect", () => {
   // calling server socket input "industry baby"
-  socket.emit("searchQuery", { searchQuery: "industry baby" });
+  socket.emit("searchQuery", { searchQuery: "trac" });
 
   // receive socket client side
   socket.on("found", (data) => {
