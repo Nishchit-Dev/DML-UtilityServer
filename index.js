@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 })
 app.use("/playlist", RoutePlaylist);
 
-const uri = MongoDB_API || process.env.MongoDB_API;
+const uri =  process.env.MongoDB_API;
 
 const connectToDB = async () => {
   mongoose
@@ -29,7 +29,7 @@ const connectToDB = async () => {
     .then((res) => {
       // console.log(res);
 
-      app.listen(process.env.PORT || PORT, () => {
+      app.listen(process.env.PORT , () => {
         console.log("Server is running on port ", process.env.PORT, "........");
       });
       

@@ -8,7 +8,7 @@ jwtObj.generateToken = (data)=>{
 }
 
 jwtObj.verifyToken = (token,wallet)=>{
-    var decode = jwt.verify(token,TokenSecretKey||process.env.TokenSecretKey )
+    var decode = jwt.verify(token,process.env.TokenSecretKey )
      if(decode.walletAd == wallet){
          return true
      }else{
