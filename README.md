@@ -8,6 +8,12 @@ server will be running own your custom add port
 
 so API-ENDPoints will be 
 
+0. Connect to Server 
+  http://localhost:port/playlist/connect
+  
+  ![image](https://user-images.githubusercontent.com/83442510/163676003-c69dea02-19dd-466f-bbc0-8dfda667acff.png)
+
+
 1. Create Playlist 
   http://localhost:port/playlist/createPlaylist
   
