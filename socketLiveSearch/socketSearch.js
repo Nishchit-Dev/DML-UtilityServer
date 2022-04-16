@@ -1,8 +1,7 @@
 const { Server } = require("socket.io");
 const joi = require("joi");
 const model = require("../model/playlistModel");
-const res = require("express/lib/response");
-const io = new Server({});
+let io = new Server({});
 
 //  will receive the search text and will query in database to find the search ones
 const searchValidator = joi.object({
