@@ -3,16 +3,12 @@ const joi = require("joi");
 const { default: mongoose } = require("mongoose");
 const auth = require("../helper/jwt.js");
 const jwtObj = require("../helper/jwt.js");
-const { response } = require("express");
 
 const schema_model = joi.object({
   title: joi.string().required(),
   wallet: joi.string().required(),
 });
 
-const Validate = (_arg) => {
-  return schema_model.validate(_arg);
-};
 
 // ! Whenn the data is entered first time to the database
 
@@ -32,11 +28,17 @@ const ValidateNewlysInput = (_args) => {
   return NewlyAddedSchema.validate(_args);
 };
 const NewlyAdded = async (wallet) => {
-  return await model.playlist.db
-    .collection("playlist")
-    .insertOne({ Wallet: wallet, Playlists: [] });
+  return await model.playlist.db.collection("playlist").updateOne({
+    Wallet:wallet
+  },{
+    $setOnInsert:{Wallet:wallet,Playlists:[]}
+  },
+  {
+    upsert:true
+  })
+
 };
-exports.NewlyAdded = async (req, res) => {
+exports.CreateUserStructure = async (req, res) => {
   var walletAd = req.body.wallet;
 
   try {
