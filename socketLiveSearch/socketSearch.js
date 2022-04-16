@@ -55,5 +55,5 @@ io.on("connect", (soc) => {
 
 exports.listen = (app)=>{
     console.log(process.env.SocketPort)
-    io.listen(app);
+    io = new Server(app)
 }

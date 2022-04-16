@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const http = require('http')
+const server = http.createServer(app)
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
@@ -28,10 +30,13 @@ const connectToDB = async () => {
     .connect(uri.toString())
     .then((res) => {
       // console.log(res);
-
-      app.listen(process.env.PORT , () => {
-        console.log("Server is running on port ", process.env.PORT, "........");
-      });
+      server.listen(process.env.PORT,()=>{
+        console.log("Server is up....")
+      })
+      LiveSearch.listen(server)
+      // app.listen(process.env.PORT , () => {
+      //   console.log("Server is running on port ", process.env.PORT, "........");
+      // });
       
     })
     .catch((err) => {
@@ -40,7 +45,7 @@ const connectToDB = async () => {
 };
 
 connectToDB()
-LiveSearch.listen()
+
 
 
 
