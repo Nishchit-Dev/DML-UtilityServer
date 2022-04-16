@@ -11,14 +11,12 @@ so API-ENDPoints will be
 0. Connect to Server 
   http://localhost:port/playlist/connect
   
-  ![image](https://user-images.githubusercontent.com/83442510/163676003-c69dea02-19dd-466f-bbc0-8dfda667acff.png)
-
+![image](https://user-images.githubusercontent.com/83442510/163676073-7e40af8b-9a4d-4c32-9d35-d5956761d65e.png)
 
 1. Create Playlist 
   http://localhost:port/playlist/createPlaylist
   
   ![image](https://user-images.githubusercontent.com/83442510/163237465-9f8364d4-5f84-466d-9c3a-e5ff9272ca98.png)
-
 
 2. Add Track to playlist 
   http://localhost:port/playlist/Add
@@ -30,7 +28,6 @@ so API-ENDPoints will be
   
   ![image](https://user-images.githubusercontent.com/83442510/163237854-83ef3e61-2b5b-4cee-bafe-d3d26eb2e162.png)
 
-  
 4. fetch users Playlist
   http://localhost:port/playlist/fetchPlaylist
   
