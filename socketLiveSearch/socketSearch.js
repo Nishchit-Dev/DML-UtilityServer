@@ -53,7 +53,7 @@ io.on("connect", (soc) => {
   });
 });
 
-exports.listen = ()=>{
+exports.listen = (app)=>{
     console.log(process.env.SocketPort)
-    io.listen(process.env.SocketPort );
+    io.listen(app);
 }
