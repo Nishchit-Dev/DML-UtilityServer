@@ -38,24 +38,26 @@ const SearchInDB = async (_args) => {
    
   return response;
 };
-io.on("connect", (soc) => {
-  console.log("socket Connected...")
-  soc.on("searchQuery", (data) => {
-    if (validate(data).error) {
-      console.log("error")
-      soc.emit("found", "errors");
-      console.log(validate(data).error.details[0].message);
-    } else {
-      console.log("socket data is sent to 'found' ")
-      SearchInDB(data).then((res) => {
-        soc.emit("found", res);
-        console.log(res)
-      });
-    }
-  }); 
-});
 
 exports.listen = (app)=>{
     console.log(process.env.SocketPort)
     io = new Server(app)
+
+    io.on("connect", (soc) => {
+      console.log("socket Connected...")
+      soc.on("searchQuery", (data) => {
+        if (validate(data).error) {
+          console.log("error")
+          soc.emit("found", "errors");
+          console.log(validate(data).error.details[0].message);
+        } else {
+          console.log("socket data is sent to 'found' ")
+          SearchInDB(data).then((res) => {
+            soc.emit("found", res);
+            console.log(res)
+          });
+        }
+      }); 
+    });
+    
 }
