@@ -36,6 +36,7 @@ so API-ENDPoints will be
 5. Add songs for search Functionality 
   http://localhost:port/playlist/AddSearch
   
-  ![image](https://user-images.githubusercontent.com/83442510/163238246-4c7298a8-c134-48a3-8f08-9b3108066821.png)
+![image](https://user-images.githubusercontent.com/83442510/164787951-3879a8a3-744c-451c-88b2-de8ea50b6a04.png)
+
 
 
