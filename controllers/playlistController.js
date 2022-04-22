@@ -263,7 +263,7 @@ exports.fetchPlaylist = (req, res) => {
 };
 
 const TrackSchema = joi.object({
-  track: joi.string().required(),
+  track: joi.string().required()
 });
 
 const TrackValidation = (track) => {
