@@ -219,8 +219,9 @@ exports.AddTrack = (req, res) => {
     } else {
       AddTracks(walletAdd, listname, track).then((resp) => {
         console.log(resp);
+        res.send(resp);
       });
-      res.send(resp);
+     
     }
   } else {
     console.log("token err");
