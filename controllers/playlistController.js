@@ -9,7 +9,6 @@ const schema_model = joi.object({
   wallet: joi.string().required(),
 });
 
-
 // ! Whenn the data is entered first time to the database
 
 // ^ structure of the each tuple
@@ -28,15 +27,17 @@ const ValidateNewlysInput = (_args) => {
   return NewlyAddedSchema.validate(_args);
 };
 const NewlyAdded = async (wallet) => {
-  return await model.playlist.db.collection("playlist").updateOne({
-    Wallet:wallet
-  },{
-    $setOnInsert:{Wallet:wallet,Playlists:[]}
-  },
-  {
-    upsert:true
-  })
-
+  return await model.playlist.db.collection("playlist").updateOne(
+    {
+      Wallet: wallet,
+    },
+    {
+      $setOnInsert: { Wallet: wallet, Playlists: [] },
+    },
+    {
+      upsert: true,
+    }
+  );
 };
 exports.CreateUserStructure = async (req, res) => {
   var walletAd = req.body.wallet;
@@ -101,7 +102,7 @@ const CreateNewPlaylist = async (walletAd, listTitle) => {
 exports.CreatePlaylist = async (req, res) => {
   var auth = jwtObj.verifyToken(req.headers.token, req.body.wallet);
 
-  if (auth) {
+  if (auth){
     var walletAd = req.body.wallet;
     var listName = req.body.listTitle;
 
@@ -263,7 +264,6 @@ exports.fetchPlaylist = (req, res) => {
 
 const TrackSchema = joi.object({
   track: joi.string().required(),
-  search: joi.string().required(),
 });
 
 const TrackValidation = (track) => {
@@ -277,43 +277,20 @@ const AddForSearch = async (track) => {
 };
 
 exports.AddTrackForSearch = async (req, res) => {
-  // var auth = jwtObj.verifyToken(req.headers.token, req.body.wallet);
+  var auth = jwtObj.verifyToken(req.headers.token, req.body.wallet);
 
-  // if (auth) {
-  var TrackName = req.body.wallet;
+  if (auth) {
+    var TrackName = req.body.wallet;
 
-  var valid = TrackValidation(req.body);
+    var valid = TrackValidation(req.body);
 
-  if (valid.error) {
-    console.log(valid.error.details[0].message);
-  } else {
-    AddForSearch(req.body.track).then((response) => {
-      console.log(response);
-    });
-
-    // { $or: [{ Track: { $regex: "trac" } }] }
-    var cursor = await model.playlist.db.collection("TrackSearch").aggregate([
-      {
-        $project: {
-          _id:0,
-          Track: 1,
-        },
-      },
-      {
-        $match: {
-          $or: [{ Track: { $regex: req.body.search ,$options:'-i'} }],
-        },
-      },{
-        $limit:5
-      }
-    ]);
-    var responses = [];
-    cursor
-      .forEach((doc) => {
-        responses.push(doc);
-      })
-      .then(() => {
-        res.send(JSON.stringify(responses));
+    if (valid.error) {
+      console.log(valid.error.details[0].message);
+    } else {
+      AddForSearch(req.body.track).then((response) => {
+        console.log(response);
+        res.send(response.acknowledged);
       });
+    }
   }
 };

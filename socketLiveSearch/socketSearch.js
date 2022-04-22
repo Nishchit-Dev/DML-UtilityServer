@@ -44,20 +44,20 @@ exports.listen = (app)=>{
     io = new Server(app)
 
     io.on("connect", (soc) => {
-      console.log("socket Connected...")
-      soc.on("searchQuery", (data) => {
-        if (validate(data).error) {
-          console.log("error")
-          soc.emit("found", "errors");
-          console.log(validate(data).error.details[0].message);
-        } else {
-          console.log("socket data is sent to 'found' ")
-          SearchInDB(data).then((res) => {
-            soc.emit("found", res);
-            console.log(res)
-          });
-        }
-      }); 
-    });
-    
+  console.log("socket Connected...")
+  soc.on("searchQuery", (data) => {
+    if (validate(data).error) {
+      console.log("error")
+      soc.emit("found", "errors");
+      console.log(validate(data).error.details[0].message);
+    } else {
+      console.log("socket data is sent to 'found' ")
+      SearchInDB(data).then((res) => {
+        soc.emit("found", res);
+        console.log(res)
+      });
+    }
+  }); 
+});
+
 }
