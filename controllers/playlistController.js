@@ -81,7 +81,7 @@ exports.CreateUserStructure = async (req, res) => {
 
 const CreatePlaylistSchema = joi.object({
   wallet: joi.string().required(),
-  listTitle: joi.string().required(),
+  playlistTitle: joi.string().required(),
 });
 
 const ValidateCreatePlaylistsInput = (_args) => {
@@ -104,7 +104,7 @@ exports.CreatePlaylist = async (req, res) => {
 
   if (auth){
     var walletAd = req.body.wallet;
-    var listName = req.body.listTitle;
+    var listName = req.body.playlistTitle;
 
     var validation = ValidateCreatePlaylistsInput(req.body);
 
@@ -144,7 +144,7 @@ exports.CreatePlaylist = async (req, res) => {
 const RemoveTrackScheme = joi.object({
   wallet: joi.string().required(),
   id: joi.string().required(),
-  list: joi.string().required(),
+  PlaylistID: joi.string().required(),
 });
 
 const RemoveValidation = (_args) => {
@@ -167,7 +167,7 @@ exports.RemoveTrackFromPlaylist = (req, res) => {
   if (auth) {
     var walletAd = req.body.wallet;
     var trackid = req.body.id;
-    var tracklist = req.body.list;
+    var tracklist = req.body.PlaylistID;
 
     console.log(req.body);
     var validation = RemoveValidation(req.body);
@@ -187,7 +187,7 @@ exports.RemoveTrackFromPlaylist = (req, res) => {
 
 const ValdiationModel = joi.object({
   wallet: joi.string().required(),
-  list: joi.string().required(),
+  PlaylistID: joi.string().required(),
   Track: joi.object().required(),
 });
 const ValidationOfTrack = (obj) => {
@@ -211,7 +211,7 @@ exports.AddTrack = (req, res) => {
     var validation = ValidationOfTrack(req.body);
 
     var walletAdd = req.body.wallet;
-    var listname = req.body.list;
+    var listname = req.body.PlaylistID;
     var track = req.body.Track;
 
     if (validation.error) {
@@ -290,7 +290,7 @@ exports.AddTrackForSearch = async (req, res) => {
     } else {
       AddForSearch(req.body.track).then((response) => {
         console.log(response);
-        res.send(response.acknowledged);
+        res.send(response);
       });
     }
   }
