@@ -143,7 +143,7 @@ exports.CreatePlaylist = async (req, res) => {
 */
 const RemoveTrackScheme = joi.object({
   wallet: joi.string().required(),
-  id: joi.string().required(),
+  id: joi.number().required(),
   PlaylistID: joi.string().required(),
 });
 
@@ -153,8 +153,9 @@ const RemoveValidation = (_args) => {
 
 const RemoveTrack = async (wallet, PlayListID, TrackId) => {
   var _id = mongoose.Types.ObjectId(PlayListID);
+  console.log(_id)
   return await model.playlist.db.collection("playlist").updateOne(
-    { Wallet: wallet, "Playlists.id": _id },
+    { Wallet: wallet, "Playlists.id" : _id },
     {
       $pull: { "Playlists.$.List": { id: TrackId } },
     }
