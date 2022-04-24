@@ -36,8 +36,6 @@ const connectToDB = async () => {
       server.listen(process.env.PORT,()=>{
         console.log("Server is up....")
       })
-      TruncatePlaylist()
-      TruncateSongs()
       LiveSearch.listen(server)
       // app.listen(process.env.PORT , () => {
       //   console.log("Server is running on port ", process.env.PORT, "........");
