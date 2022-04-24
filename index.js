@@ -8,7 +8,6 @@ const dotenv = require("dotenv");
 const RoutePlaylist = require("./routes/playlist/playlist");
 // socket configs 
 const LiveSearch = require('./socketLiveSearch/socketSearch');
-const { TruncatePlaylist, TruncateSongs } = require("./DevelopersCheat/Backdoor");
 
 dotenv.config();
 app.use(function (req, res, next) {
