@@ -1,7 +1,12 @@
-const { Server } = require("socket.io");
+const { Server } = require("socket.io")(server,{
+  cors:{
+    origin:'*',
+  }
+});
 const joi = require("joi");
 const model = require("../model/playlistModel");
 let io = new Server({});
+
 
 //  will receive the search text and will query in database to find the search ones
 const searchValidator = joi.object({

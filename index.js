@@ -7,12 +7,12 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const RoutePlaylist = require("./routes/playlist/playlist");
 // socket configs 
-const LiveSearch = require('./socketLiveSearch/socketSearch')
+const LiveSearch = require('./socketLiveSearch/socketSearch');
+const { TruncatePlaylist, TruncateSongs } = require("./DevelopersCheat/Backdoor");
 
 dotenv.config();
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-
   res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,token');
   res.setHeader("Access-Control-Allow-Credentials", "true");
   // res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" );
@@ -36,6 +36,8 @@ const connectToDB = async () => {
       server.listen(process.env.PORT,()=>{
         console.log("Server is up....")
       })
+      TruncatePlaylist()
+      TruncateSongs()
       LiveSearch.listen(server)
       // app.listen(process.env.PORT , () => {
       //   console.log("Server is running on port ", process.env.PORT, "........");
