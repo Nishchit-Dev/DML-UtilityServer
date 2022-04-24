@@ -47,7 +47,6 @@ exports.listen = (app)=>{
         origin:'*'
       }
     })
-    
     io.on("connect", (soc) => {
   console.log("socket Connected...")
   soc.on("searchQuery", (data) => {
