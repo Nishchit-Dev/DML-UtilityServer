@@ -1,8 +1,8 @@
-const { Server } = require("socket.io")
+// const { Server } = require("socket.io")
 const joi = require("joi");
 const model = require("../model/playlistModel");
-let io = new Server({});
-
+// let io = new Server({});
+let io ;
 
 //  will receive the search text and will query in database to find the search ones
 const searchValidator = joi.object({
@@ -42,8 +42,12 @@ const SearchInDB = async (_args) => {
 
 exports.listen = (app)=>{
     console.log(process.env.SocketPort)
-    io = new Server(app)
-
+    io = require('socket.io')(app,{
+      cors:{
+        origin:'*'
+      }
+    })
+    
     io.on("connect", (soc) => {
   console.log("socket Connected...")
   soc.on("searchQuery", (data) => {
