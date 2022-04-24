@@ -1,8 +1,4 @@
-const { Server } = require("socket.io")(server,{
-  cors:{
-    origin:'*',
-  }
-});
+const { Server } = require("socket.io")
 const joi = require("joi");
 const model = require("../model/playlistModel");
 let io = new Server({});
